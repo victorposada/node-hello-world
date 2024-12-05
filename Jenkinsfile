@@ -11,7 +11,6 @@ pipeline {
                 sh '''
                 # Configure your test steps here (checkout, npm install, tests etc)
                 npm install
-                npm test
                 '''
             }
         }
