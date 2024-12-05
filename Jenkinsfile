@@ -5,10 +5,13 @@ pipeline {
             defaultContainer 'node'
         }
     }
+    environment {
+        GH_TOKEN  = credentials('github-token')
+    }
     stages {
         stage('Test') {
             steps {
-                sh 'npm install'
+                sh 'npm install'l
             }
         }
         stage('Release') {
