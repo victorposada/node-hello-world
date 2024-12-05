@@ -8,10 +8,7 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-                sh '''
-                # Configure your test steps here (checkout, npm install, tests etc)
-                npm install
-                '''
+                sh 'npm install'
             }
         }
         stage('Release') {
