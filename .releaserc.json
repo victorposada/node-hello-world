@@ -1,0 +1,12 @@
+module.exports = {
+    branches: ['main'], // Asegúrate de especificar las ramas desde las que se lanzarán las versiones.
+    repositoryUrl: 'https://github.com/victorposada/node-hello-world',
+    plugins: [
+      '@semantic-release/commit-analyzer', // Analiza los commits para determinar el siguiente número de versión.
+      '@semantic-release/release-notes-generator', // Genera notas de la versión basadas en los commits.
+      '@semantic-release/changelog', // Actualiza el archivo CHANGELOG.md.
+      '@semantic-release/github', // Publica la nueva versión en GitHub como release.
+      '@semantic-release/git', // Actualiza el CHANGELOG.md y el archivo package.json.
+    ],
+  };
+  
