@@ -31,7 +31,7 @@ pipeline {
             steps {
                 container('kaniko'){
                     sh '''
-                                        /kaniko/executor --context=dir://. --dockerfile=Dockerfile --destination=gcr.io/my-project/my-image:latest    
+                    /kaniko/executor --context=dir://. --dockerfile=Dockerfile --destination=ghcr.io/victorposada/node-hello-world:latest    
                     '''
                 }
             }
