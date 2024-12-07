@@ -7,6 +7,7 @@ pipeline {
     }
     environment {
         GH_TOKEN  = credentials('github-token')
+        NPM_TOKEN  = credentials('github-token')
     }
     stages {
         stage('Checkout') {
