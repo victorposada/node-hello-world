@@ -31,7 +31,7 @@ pipeline {
             steps {
                 container('kaniko'){
                     sh '''
-                    docker ps    
+                                        /kaniko/executor --context=dir://. --dockerfile=Dockerfile --destination=gcr.io/my-project/my-image:latest    
                     '''
                 }
             }
