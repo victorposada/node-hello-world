@@ -7,14 +7,11 @@ pipeline {
     }
     environment {
         GH_TOKEN  = credentials('github-token')
-        NPM_TOKEN  = credentials('github-token')
     }
     stages {
         stage('Checkout') {
             steps {
                 sh 'git config --global --add safe.directory /home/jenkins/agent/workspace/node-hello-world_main'
-                sh 'git status'
-                sh 'ls -la'
             }
         }
         stage('Test') {
