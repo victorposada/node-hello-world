@@ -27,5 +27,14 @@ pipeline {
                 '''
             }
         }
+        stage('Build docker image') {
+            steps {
+                container('kaniko'){
+                    sh '''
+                    docker ps    
+                    '''
+                }
+            }
+        }
     }
 }
