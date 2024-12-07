@@ -11,8 +11,8 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                checkout scm
-                sh 'git rev-parse --is-inside-work-tree'
+                sh 'git status'
+                sh 'ls -la'
             }
         }
         stage('Test') {
