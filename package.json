@@ -16,10 +16,8 @@
     "hello-world"
   ],
   "author": "Victor Posada",
-  "license": "MIT",
   "devDependencies": {
     "semantic-release": "^24.2.0",
-    "@semantic-release/npm": "^9.0.0",
     "@semantic-release/github": "^8.0.0",
     "@semantic-release/commit-analyzer": "^10.0.0",
     "@semantic-release/release-notes-generator": "^11.0.0"
