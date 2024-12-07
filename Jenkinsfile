@@ -11,6 +11,7 @@ pipeline {
     stages {
         stage('Test') {
             steps {
+                sh 'sleep 200'
                 sh 'npm install'
             }
         }
