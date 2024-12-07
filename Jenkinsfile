@@ -11,6 +11,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
+                sh 'git config --global --add safe.directory /home/jenkins/agent/workspace/node-hello-world_main'
                 sh 'git status'
                 sh 'ls -la'
             }
