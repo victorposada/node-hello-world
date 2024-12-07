@@ -1,10 +1,38 @@
 {
-  "devDependencies": {
-    "semantic-release": "^24.2.0"
+  "name": "node-hello-world",
+  "version": "0.0.0",
+  "description": "A simple Node.js Hello World project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "release": "semantic-release"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/victorposada/node-hello-world.git"
   },
-  "name": "node-hello-world"
+  "keywords": [
+    "node",
+    "hello-world"
+  ],
+  "author": "Victor Posada",
+  "license": "MIT",
+  "devDependencies": {
+    "semantic-release": "^24.2.0",
+    "@semantic-release/npm": "^9.0.0",
+    "@semantic-release/github": "^8.0.0",
+    "@semantic-release/commit-analyzer": "^10.0.0",
+    "@semantic-release/release-notes-generator": "^11.0.0"
+  },
+  "release": {
+    "branches": [
+      "main"
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/npm",
+      "@semantic-release/github"
+    ]
+  }
 }
