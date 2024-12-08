@@ -45,6 +45,7 @@ pipeline {
                         EOF
                     '''
                     sh 'cat config.json'
+                    sh 'sleep 200'
                     sh '''
                         /kaniko/executor --context=dir://. --dockerfile=Dockerfile --verbosity=debug \
                                         --destination=ghcr.io/victorposada/node-hello-world:latest    
