@@ -32,7 +32,7 @@ pipeline {
             steps {
                 container('kaniko') {
                     sh '''
-                        cat <<EOF > /kaniko/.docker/config.json
+                        cat <<EOF > ./config.json
                         {
                             "auths": {
                                 "ghcr.io": {
