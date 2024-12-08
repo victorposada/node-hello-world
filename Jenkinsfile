@@ -32,8 +32,9 @@ pipeline {
         stage('Build docker image') {
             steps {
                 container('kaniko') {
+                    sh 'mkdir -p /kaniko/.docker'
                     sh '''
-                        cat <<EOF > ./config.json
+                        cat <<EOF > /kaniko/.docker/config.json
                         {
                             "auths": {
                                 "ghcr.io": {
