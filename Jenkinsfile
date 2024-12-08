@@ -6,7 +6,8 @@ pipeline {
         }
     }
     environment {
-        GH_TOKEN  = credentials('github-token')
+        GH_TOKEN    = credentials('github-token')
+        GH_USER     = "victorposada"
     }
     stages {
         stage('Checkout') {
@@ -30,6 +31,17 @@ pipeline {
         stage('Build docker image') {
             steps {
                 container('kaniko'){
+                    sh '      cat <<EOF > /kaniko/.docker/config.json
+                    {
+                        "auths": {
+                            "ghcr.io": {
+                                "auth": "$(echo -n "$GH_USER:$GH_TOKEN" | base64 -w0)"
+                            }
+                        }
+                    }
+                    EOF
+                    '
+                    sh 'sleep 200'
                     sh '''
                     /kaniko/executor --context=dir://. --dockerfile=Dockerfile --destination=ghcr.io/victorposada/node-hello-world:latest    
                     '''
