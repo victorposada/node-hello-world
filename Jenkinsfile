@@ -8,6 +8,7 @@ pipeline {
     environment {
         GH_TOKEN    = credentials('github-token')
         GH_USER     = "victorposada"
+        GH_TEST     = credentials('test')
     }
     stages {
         stage('Checkout') {
@@ -37,7 +38,7 @@ pipeline {
                             "auths": {
                                 "ghcr.io": {
                                     "username": "$GH_USER",
-                                    "password": "$GH_TOKEN"
+                                    "password": "$GH_TEST"
                                 }
                             }
                         }
