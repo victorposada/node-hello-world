@@ -46,8 +46,8 @@ pipeline {
                         EOF
                     '''
                     sh '''
-                        /kaniko/executor --context=dir://. --dockerfile=Dockerfile --verbosity=debug \
-                                        --destination=ghcr.io/victorposada/node-hello-world:latest    
+                        /kaniko/executor --context=dir://. --dockerfile=Dockerfile \
+                                        --destination=ghcr.io/victorposada/node-hello-world/node-hello-world:latest    
                     '''
                 }
             }
