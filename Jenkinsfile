@@ -47,7 +47,6 @@ pipeline {
                         /kaniko/executor --context=dir://. --dockerfile=Dockerfile --verbosity=debug \
                                         --destination=ghcr.io/victorposada/node-hello-world:latest    
                     '''
-                    sh 'slepp 300'
                 }
             }
         }
