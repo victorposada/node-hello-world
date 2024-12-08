@@ -35,8 +35,9 @@ pipeline {
                         cat <<EOF > ./config.json
                         {
                             "auths": {
-                                "ghcr.io": {
-                                    "auth": "$(echo -n "$GH_USER:$GH_TOKEN" | base64 -w0)"
+                                "https://ghcr.io": {
+                                    "username": "$GH_USER",
+                                    "password": "$GH_TOKEN"
                                 }
                             }
                         }
