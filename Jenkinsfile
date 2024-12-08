@@ -30,20 +30,21 @@ pipeline {
         }
         stage('Build docker image') {
             steps {
-                container('kaniko'){
-                    sh '      cat <<EOF > /kaniko/.docker/config.json
-                    {
-                        "auths": {
-                            "ghcr.io": {
-                                "auth": "$(echo -n "$GH_USER:$GH_TOKEN" | base64 -w0)"
+                container('kaniko') {
+                    sh '''
+                        cat <<EOF > /kaniko/.docker/config.json
+                        {
+                            "auths": {
+                                "ghcr.io": {
+                                    "auth": "$(echo -n "$GH_USER:$GH_TOKEN" | base64 -w0)"
+                                }
                             }
                         }
-                    }
-                    EOF
-                    '
-                    sh 'sleep 200'
+                        EOF
+                    '''
                     sh '''
-                    /kaniko/executor --context=dir://. --dockerfile=Dockerfile --destination=ghcr.io/victorposada/node-hello-world:latest    
+                        /kaniko/executor --context=dir://. --dockerfile=Dockerfile \
+                                        --destination=ghcr.io/victorposada/node-hello-world:latest    
                     '''
                 }
             }
