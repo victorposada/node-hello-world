@@ -47,7 +47,7 @@ pipeline {
                     '''
                     sh '''
                         /kaniko/executor --context=dir://. --dockerfile=Dockerfile \
-                                        --destination=ghcr.io/victorposada/node-hello-world/node-hello-world:latest    
+                                        --destination=ghcr.io/victorposada/node-hello-world/app:latest    
                     '''
                 }
             }
