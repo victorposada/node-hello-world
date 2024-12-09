@@ -47,7 +47,7 @@ pipeline {
                     '''
                     sh '''
                     /kaniko/executor --context=dir://. --dockerfile=Dockerfile \
-                    --destination=ghcr.io/victorposada/node-hello-world/apps:latest \
+                    --destination=ghcr.io/victorposada/node-hello-world/appsss:latest \
                     --label "org.opencontainers.image.source=https://github.com/victorposada/node-hello-world" 
                     '''
                 }
