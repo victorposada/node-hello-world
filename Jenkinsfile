@@ -45,9 +45,8 @@ pipeline {
                         }
                         EOF
                     '''
-                    sh 'sleep 200'
                     sh '''
-                        /kaniko/executor --context=dir://. --dockerfile=Dockerfile  --destination=ghcr.io/victorposada/node-hello-world/app:latest    
+                        /kaniko/executor --context=dir://. --dockerfile=Dockerfile --destination=ghcr.io/victorposada/node-hello-world/app:latest    
                     '''
                 }
             }
