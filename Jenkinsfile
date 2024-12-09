@@ -46,7 +46,7 @@ pipeline {
                         EOF
                     '''
                     sh '''
-                        /kaniko/executor --context=dir://. --dockerfile=Dockerfile --destination=ghcr.io/victorposada/node-hello-world/app:latest    
+                        /kaniko/executor --label pep=pop--context=dir://. --dockerfile=Dockerfile --destination=ghcr.io/victorposada/node-hello-world/app:latest    
                     '''
                 }
             }
