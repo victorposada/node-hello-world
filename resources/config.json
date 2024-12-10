@@ -1,7 +1,0 @@
-{
-	"auths": {
-		"oci://ghcr.io/": {
-			"auth": "base64(victorposada:$GH_TOKEN)"
-		}
-	}
-}
