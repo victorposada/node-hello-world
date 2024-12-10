@@ -35,7 +35,7 @@ pipeline {
                 container('buildah'){
                 sh '''
                 echo $GH_TOKEN | buildah login --username victorposada --password-stdin ghcr.io
-                buildah bud --label org.opencontainers.image.source=https://github.com/victorposada/node-hello-world --no-cache -t ghcr.io/victorposada/node-hello-world/web:$IMAGE_TAG .
+                buildah bud --format=docker --label org.opencontainers.image.source=https://github.com/victorposada/node-hello-world --no-cache -t ghcr.io/victorposada/node-hello-world/web:$IMAGE_TAG .
                 buildah push ghcr.io/victorposada/node-hello-world/web:$IMAGE_TAG
                 '''
                 }
