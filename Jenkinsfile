@@ -35,8 +35,8 @@ pipeline {
                 container('buildah'){
                 sh '''
                 echo $GH_TOKEN | buildah login --username victorposada --password-stdin ghcr.io
-                buildah bud -t ghcr.io/victorposada/node-hello-world:$IMAGE_TAG .
-                buildah push ghcr.io/victorposada/node-hello-world:$IMAGE_TAG
+                buildah bud -t ghcr.io/victorposada/node-hello-world/web:$IMAGE_TAG .
+                buildah push ghcr.io/victorposada/node-hello-world/web:$IMAGE_TAG
                 '''
                 }
 
