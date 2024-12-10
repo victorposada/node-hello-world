@@ -7,8 +7,9 @@ pipeline {
     }
     environment {
         GH_TOKEN    = credentials('github-token')
-        GH_USER     = "victorposada"
-        GH_TEST     = credentials('test')
+        REGISTRY = 'ghcr.io'
+        IMAGE_NAME = 'your-image-name'
+        IMAGE_TAG = 'latest'
     }
     stages {
         stage('Checkout') {
@@ -29,28 +30,16 @@ pipeline {
                 '''
             }
         }
-        stage('Build docker image') {
+        stage('Login to Registry') {
             steps {
-                container('kaniko') {
-                    sh 'mkdir -p /kaniko/.docker'
+                container (buildah){
                     sh '''
-                        cat <<EOF > /kaniko/.docker/config.json
-                        {
-                            "auths": {
-                                "ghcr.io": {
-                                    "username": "$GH_USER",
-                                    "password": "$GH_TEST"
-                                }
-                            }
-                        }
-                        EOF
-                    '''
-                    sh '''
-                    /kaniko/executor --context=dir://. --dockerfile=Dockerfile \
-                    --destination=ghcr.io/victorposada/node-hello-world/appsss:latest \
-                    --label "org.opencontainers.image.source=https://github.com/victorposada/node-hello-world" 
+                    echo $GH_TOKEN | buildah login --username victorposada --password-stdin ghcr.io
+                    buildah bud -t ghcr.io/victorposada/node-hello-world:$IMAGE_TAG .
+                    buildah push ghcr.io/victorposada/node-hello-world:$IMAGE_TAG
                     '''
                 }
+
             }
         }
     }
