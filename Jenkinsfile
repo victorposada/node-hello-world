@@ -7,39 +7,40 @@ pipeline {
     }
     environment {
         GH_TOKEN    = credentials('github-token')
-        REGISTRY = 'ghcr.io'
-        IMAGE_NAME = 'your-image-name'
-        IMAGE_TAG = 'latest'
+        REGISTRY    = 'ghcr.io'
     }
     stages {
         stage('Checkout') {
             steps {
-                sh 'git config --global --add safe.directory /home/jenkins/agent/workspace/node-hello-world_main'
+                script {
+                    sh 'git config --global --add safe.directory "/home/jenkins/agent/workspace/node-hello-world_main"'
+                }
             }
         }
-        stage('Test') {
+        stage('Install Dependencies') {
             steps {
                 sh 'npm install'
             }
         }
-        stage('Release') {
+        stage('Run Tests') {
             steps {
-                sh '''
-                # Run optional required steps before releasing
-                npx semantic-release
-                '''
+                // Add test commands here if needed
             }
         }
-        stage('Login to Registry') {
+        stage('Release') {
             steps {
-                container('buildah'){
-                sh '''
-                echo $GH_TOKEN | buildah login --username victorposada --password-stdin ghcr.io
-                buildah bud --format=docker --no-cache -t ghcr.io/victorposada/node-hello-world/web:$IMAGE_TAG .
-                buildah push ghcr.io/victorposada/node-hello-world/web:$IMAGE_TAG
-                '''
+                sh 'npx semantic-release'
+            }
+        }
+        stage('Build and Push Image') {
+            steps {
+                container('buildah') {
+                    sh '''
+                        echo $GH_TOKEN | buildah login --username victorposada --password-stdin $REGISTRY
+                        buildah bud --format=docker --no-cache -t $REGISTRY/victorposada/node-hello-world/web:$IMAGE_TAG .
+                        buildah push $REGISTRY/victorposada/node-hello-world/web:$IMAGE_TAG
+                    '''
                 }
-
             }
         }
     }
