@@ -20,7 +20,8 @@ pipeline {
         stage('Analysis') {
             steps {
                 script {
-                    sh 'cdxgen -o bom.json'
+                    sh 'yarn add --dev @cyclonedx/yarn-plugin-cyclonedx'
+                    sh 'yarn exec cyclonedx-yarn -o bom.json'
                     sh 'cat bom.json'
                 }
             }
