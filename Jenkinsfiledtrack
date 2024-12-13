@@ -10,13 +10,7 @@ pipeline {
         REGISTRY    = 'ghcr.io'
     }
     stages {
-        stage('Checkout') {
-            steps {
-                script {
-                    sh 'git config --global --add safe.directory "/home/jenkins/agent/workspace/node-hello-world_main"'
-                }
-            }
-        }
+
         stage('Analysis') {
             steps {
                 script {
